@@ -1,5 +1,5 @@
 pass=ibm-team
-host=greenfront.edinburgh.uk.ibm.com
+host=sandwood.org
 keypass=ibm-team
 
 rm root.jks

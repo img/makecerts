@@ -9,7 +9,7 @@ openssl genrsa \
 
 # Create a request from your Device, which your Root CA will sign
 openssl req -new \
-    -config openssl.cnf \
+  -config openssl.cnf \
   -sha256 \
   -key all/privkey.pem \
   -out all/csr.pem
@@ -42,8 +42,8 @@ openssl pkcs12 -export -in all/cert.pem -inkey all/privkey.pem -out all/server.p
 
 # needs to be oracle keytool - ibm one seems not to like this incantation
 rm -f all/ibm-team-ssl.keystore
-"/c/Program Files/Java/jdk1.8.0_65/bin/keytool" -importkeystore -deststorepass ibm-team -destkeypass ibm-team -destkeystore all/ibm-team-ssl.keystore -srckeystore all/server.p12 -srcstoretype PKCS12 -srcstorepass ibm-team
+keytool.exe -importkeystore -deststorepass ibm-team -destkeypass ibm-team -destkeystore all/ibm-team-ssl.keystore -srckeystore all/server.p12 -srcstoretype PKCS12 -srcstorepass ibm-team
 
-cp server/cert.pem /d/dev/gadget_server/certs/server/my-server.crt.pem
-cp server/privkey.pem /d/dev/gadget_server/certs/server/my-server.key.pem
-cp server/my-private-root-ca.cert.pem /d/dev/gadget_server/certs/ca/my-root-ca.crt.pem
+#cp server/cert.pem /d/dev/gadget_server/certs/server/my-server.crt.pem
+#cp server/privkey.pem /d/dev/gadget_server/certs/server/my-server.key.pem
+#cp server/my-private-root-ca.cert.pem /d/dev/gadget_server/certs/ca/my-root-ca.crt.pem

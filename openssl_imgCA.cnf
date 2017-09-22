@@ -10,7 +10,7 @@ RANDFILE               = $ENV::HOME/.rnd
 
  [ req_distinguished_name ]
  C                      = GB
- O                      = Persistent Systems Limited
+ O                      = Persistent 
  OU                     = Edinburgh lab
- CN                     = img.persistent.com
+ CN                     = img.sandwood.org
  [ req_attributes ]

@@ -1,5 +1,5 @@
 #!/bin/bash
-FQDN=greenfront.edinburgh.uk.ibm.com
+FQDN=sandwood.org
 
 # make directories to work from
 mkdir -p server/ client/ all/
