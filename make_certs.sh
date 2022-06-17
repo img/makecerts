@@ -3,6 +3,8 @@ FQDN=sandwood.org
 
 # make directories to work from
 mkdir -p server/ client/ all/
+rm -f server/* client/* all/*
+
 
 # Create your very own Root Certificate Authority
 openssl genrsa \

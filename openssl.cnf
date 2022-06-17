@@ -11,7 +11,7 @@ RANDFILE               = $ENV::HOME/.rnd
 
  [ req_distinguished_name ]
  C                      = GB
- O                      = Persistent
+ O                      = img
  OU                     = Edinburgh lab
  CN                     = sandwood.org
  [ req_attributes ]
@@ -28,3 +28,4 @@ subjectAltName = @alt_names
 DNS.1 = sandwood.org
 DNS.2 = www.sandwood.org	
 DNS.3 = gadget.sandwood.org
+DNS.4 = durness.org

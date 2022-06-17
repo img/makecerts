@@ -16,13 +16,15 @@ openssl req -new \
 
 # Sign the request from Device with your Root CA
 openssl x509 \
-  -req -in all/csr.pem \
+	-req -in all/csr.pem \
+	-extfile openssl.cnf \
+	-extensions v3_req \
   -sha256 \
   -CA all/my-private-root-ca.cert.pem \
   -CAkey all/my-private-root-ca.privkey.pem \
   -CAcreateserial \
   -out all/cert.pem \
-  -days 500
+  -days 365
 
 # covert the server certificate to der
 #openssl x509 -outform der -in all/cert.pem -out all/cert.der
@@ -38,11 +40,11 @@ cp all/my-private-root-ca.cert.pem client/
 
 # add the certificate and private key into a p12
 rm -f all/server.p12
-openssl pkcs12 -export -in all/cert.pem -inkey all/privkey.pem -out all/server.p12 -name default -CAfile all/my-private-root-ca.cert.pem -caname root -passout pass:ibm-team 
+openssl pkcs12 -export -in all/cert.pem -inkey all/privkey.pem -out all/ibm-team-ssl.p12 -name default -CAfile all/my-private-root-ca.cert.pem -caname root -passout pass:ibm-team 
 
 # needs to be oracle keytool - ibm one seems not to like this incantation
 rm -f all/ibm-team-ssl.keystore
-keytool.exe -importkeystore -deststorepass ibm-team -destkeypass ibm-team -destkeystore all/ibm-team-ssl.keystore -srckeystore all/server.p12 -srcstoretype PKCS12 -srcstorepass ibm-team
+/cygdrive/c/Program\ Files/Java/jdk1.8.0_333/bin/keytool.exe -importkeystore -deststorepass ibm-team -destkeypass ibm-team -destkeystore all/ibm-team-ssl.keystore -srckeystore all/ibm-team-ssl.p12 -srcstoretype PKCS12 -srcstorepass ibm-team
 
 #cp server/cert.pem /d/dev/gadget_server/certs/server/my-server.crt.pem
 #cp server/privkey.pem /d/dev/gadget_server/certs/server/my-server.key.pem
